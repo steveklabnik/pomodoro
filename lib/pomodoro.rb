@@ -8,9 +8,11 @@ module Pomodoro
     def start!
       Noprocrast.activate!
       @start_time = Time.now
+      work_growl
     end
     def stop!
       Noprocrast.deactivate!
+      break_growl
     end
 
     def work interval=5
@@ -22,6 +24,15 @@ module Pomodoro
         sleep interval * 60
       end
     end
+
+    def break_growl
+      system 'growlnotify -w -n Pomodoro -m "You have 5 minutes." "BREAK TIME" -s'
+    end
+
+    def work_growl
+      system 'growlnotify -w -n Pomodoro -m "This lasts 25 minutes." "WORK TIME" -s'
+    end
+
   end
 end
 

@@ -7,9 +7,15 @@ require 'chronic'
 describe Pomodoro do
 
   before :all do
+    #all of these methods have ugly side effects, so let's just
+    #redefine them as noops
     def Noprocrast.activate!
     end
     def Noprocrast.deactivate!
+    end
+    def Pomodoro.break_growl
+    end
+    def Pomodoro.work_growl
     end
   end
 
@@ -27,12 +33,22 @@ describe Pomodoro do
       end
     end
 
+    it "growls" do
+      Pomodoro.should_receive(:work_growl)
+      Pomodoro.start!
+    end
+
   end
 
   describe "#stop!" do
 
     it "uses noprocrast" do
       Noprocrast.should_receive(:deactivate!)
+      Pomodoro.stop!
+    end
+
+    it "growls" do
+      Pomodoro.should_receive(:break_growl)
       Pomodoro.stop!
     end
 
@@ -55,6 +71,7 @@ describe Pomodoro do
       Pomodoro.work(0)
       Timecop.return
     end
+
   end
 
 end
