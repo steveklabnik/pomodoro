@@ -2,6 +2,7 @@
 require 'noprocrast'
 require './lib/pomodoro'
 require 'timecop'
+require 'chronic'
 
 describe Pomodoro do
 
@@ -39,6 +40,21 @@ describe Pomodoro do
 
   describe "#work" do
 
+    it "doesn't call #stop for the first 24 minutes" do
+      Pomodoro.start!
+      Pomodoro.should_not_receive(:stop!)
+      Timecop.travel(Chronic.parse('24 minutes from now'))
+      Pomodoro.work(0)
+      Timecop.return
+    end
+
+    it "calls #stop! after 25 minutes" do
+      Pomodoro.start!
+      Pomodoro.should_receive(:stop!)
+      Timecop.travel(Chronic.parse('26 minutes from now'))
+      Pomodoro.work(0)
+      Timecop.return
+    end
   end
 
 end

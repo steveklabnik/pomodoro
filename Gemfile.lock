@@ -10,6 +10,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     autotest (4.4.5)
+    chronic (0.3.0)
     daemons (1.1.0)
     diff-lcs (1.1.2)
     eventmachine (0.12.10)
@@ -38,6 +39,7 @@ PLATFORMS
 
 DEPENDENCIES
   autotest
+  chronic
   noprocrast
   pomodoro!
   rspec (~> 2.1.0)
