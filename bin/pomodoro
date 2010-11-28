@@ -1,13 +1,12 @@
 #!/usr/bin/env ruby
-$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
-require 'pomodoro'
+require './lib/pomodoro'
+require 'thin'
 
-case ARGV[0] 
-when /^start$/
-  Pomodoro.start!
-when /^stop$/
-  Pomodoro.stop!
-else
-  puts "USAGE: pomodoro {start|stop}"
-end
+rackup_file = "./lib/pomodoro/config.ru"
+ 
+argv = ARGV
+argv << ["-R", rackup_file] unless ARGV.include?("-R")
+argv << ["-p", "80"] unless ARGV.include?("-p")
+argv << ["-e", "production"] unless ARGV.include?("-e")
+Thin::Runner.new(argv.flatten).run!

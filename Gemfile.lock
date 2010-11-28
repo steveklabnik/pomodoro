@@ -3,13 +3,18 @@ PATH
   specs:
     pomodoro (0.0.1)
       noprocrast
+      sinatra
+      thin
 
 GEM
   remote: http://rubygems.org/
   specs:
     autotest (4.4.5)
+    daemons (1.1.0)
     diff-lcs (1.1.2)
+    eventmachine (0.12.10)
     noprocrast (0.1.6)
+    rack (1.2.1)
     rspec (2.1.0)
       rspec-core (~> 2.1.0)
       rspec-expectations (~> 2.1.0)
@@ -18,6 +23,15 @@ GEM
     rspec-expectations (2.1.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.1.0)
+    sinatra (1.1.0)
+      rack (~> 1.1)
+      tilt (~> 1.1)
+    thin (1.2.7)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
+    tilt (1.1)
+    timecop (0.3.5)
 
 PLATFORMS
   ruby
@@ -27,3 +41,6 @@ DEPENDENCIES
   noprocrast
   pomodoro!
   rspec (~> 2.1.0)
+  sinatra
+  thin
+  timecop
