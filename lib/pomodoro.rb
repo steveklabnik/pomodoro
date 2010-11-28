@@ -5,6 +5,7 @@ module Pomodoro
     end
 
     def stop!
+      Noprocrast.deactivate!
     end
   end
 end

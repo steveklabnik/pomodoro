@@ -13,6 +13,12 @@ describe Pomodoro do
   end
 
   describe "#stop!" do
+
+    it "uses noprocrast" do
+      Noprocrast.should_receive(:deactivate!)
+      Pomodoro.stop!
+    end
+
   end
 
 end
