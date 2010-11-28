@@ -1,0 +1,9 @@
+# ./.autotest
+Autotest.add_hook(:initialize) {|at|
+  at.add_exception %r{^\.git}  # ignore Version Control System
+  at.add_mapping(%r{^lib/.*\.rb$}) {|f, _|
+    Dir['spec/**/*.rb']
+  }
+  nil
+}
+

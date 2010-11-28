@@ -1,0 +1,29 @@
+PATH
+  remote: .
+  specs:
+    pomodoro (0.0.1)
+      noprocrast
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    autotest (4.4.5)
+    diff-lcs (1.1.2)
+    noprocrast (0.1.6)
+    rspec (2.1.0)
+      rspec-core (~> 2.1.0)
+      rspec-expectations (~> 2.1.0)
+      rspec-mocks (~> 2.1.0)
+    rspec-core (2.1.0)
+    rspec-expectations (2.1.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  autotest
+  noprocrast
+  pomodoro!
+  rspec (~> 2.1.0)
