@@ -16,6 +16,7 @@ module Pomodoro
     end
 
     def work interval=5
+      @start_time = Time.now if @start_time.nil?
       loop do
         elapsed_time = Time.now - @start_time
         if elapsed_time >= 1800 # 25 minutes * 60 seconds

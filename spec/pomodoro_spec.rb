@@ -88,6 +88,14 @@ describe Pomodoro do
       Timecop.return
     end
 
+    it "sets @start_time if it's not set" do
+      Pomodoro.instance_variable_set(:@start_time, nil)
+      Timecop.freeze do
+        Pomodoro.work(0)
+        Pomodoro.instance_variable_get(:@start_time).should == Time.now
+      end
+    end
+
   end
 
 end
