@@ -8,6 +8,7 @@ rackup_file = "./lib/pomodoro/config.ru"
 Thread.new do
   loop do
     Pomodoro.work
+    sleep 300 # sleep for 5 minutes
   end
 end
  
