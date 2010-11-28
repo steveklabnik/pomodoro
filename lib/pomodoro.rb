@@ -39,9 +39,40 @@ module Pomodoro
 end
 
 class PomodoroServer < Sinatra::Base
+  enable :sessions
+  
  
   get "/" do
-    "GET BACK TO WORK"
+    session[:visits] ||= 0
+    session[:visits] += 1
+    "<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <style type='text/css'>
+      /*<![CDATA[*/
+        h1 {
+          font-family: Verdana, Arial, sans-serif; 
+          font-size: 96px;
+          font-weight: bold;
+          text-align: center;
+          padding-top: 50px;
+        }
+        h2 {
+          font-family: Verdana, Arial, sans-serif; 
+          font-size: 72px;
+          font-weight: bold;
+          text-align: center;
+        }
+      /*]]>*/
+    </style>
+    
+  </head>
+  <body>
+    <h1>GET BACK TO WORK!</h1>
+    <h2>YOU'VE BEEN HERE #{session[:visits]} TIMES THIS BREAK!</h2>
+  </body>
+</html>"
   end
  
 end
