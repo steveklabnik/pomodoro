@@ -3,3 +3,11 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
 require 'pomodoro'
 
+case ARGV[0] 
+when /^start$/
+  Pomodoro.start!
+when /^stop$/
+  Pomodoro.stop!
+else
+  puts "USAGE: pomodoro {start|stop}"
+end
