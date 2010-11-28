@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pomodoro (0.0.1)
+    pomodoro (1.0.0)
       noprocrast
       sinatra
       thin
