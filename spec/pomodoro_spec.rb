@@ -5,10 +5,11 @@ require 'timecop'
 
 describe Pomodoro do
 
-  before :each do
-    Noprocrast = double(Noprocrast)
-    Noprocrast.stub(:activate!)
-    Noprocrast.stub(:deactivate!)
+  before :all do
+    def Noprocrast.activate!
+    end
+    def Noprocrast.deactivate!
+    end
   end
 
   describe "#start!" do
@@ -33,6 +34,10 @@ describe Pomodoro do
       Noprocrast.should_receive(:deactivate!)
       Pomodoro.stop!
     end
+
+  end
+
+  describe "#work" do
 
   end
 
