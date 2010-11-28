@@ -6,13 +6,11 @@ Gem::Specification.new do |s|
   s.name        = "pomodoro"
   s.version     = Pomodoro::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["TODO: Write your name"]
-  s.email       = ["TODO: Write your email address"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
-
-  s.rubyforge_project = "pomodoro"
+  s.authors     = ["Steve Klabnik"]
+  s.email       = ["steve@steveklabnik.com"]
+  s.homepage    = "http://github.com/steveklabnik/pomodoro"
+  s.summary     = %q{Turns off certain sites in conjunction with pomodoro timekeeping.}
+  s.description = %q{I can never get work done because the internet makes it too easy to waste time. This turns off access to sites, but lets you on every so often, too.}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
