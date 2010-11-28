@@ -17,10 +17,13 @@ module Pomodoro
 
     def work interval=5
       loop do
-        if Time.now - @start_time  >= 1500 # 25 minutes * 60 seconds
+        elapsed_time = Time.now - @start_time
+        if elapsed_time >= 1800 # 25 minutes * 60 seconds
+          start!
+        elsif elapsed_time >= 1500 # 30 minutes * 60 seconds
           stop!
         end
-        break if interval == 0
+        break if interval == 0 #this lets us test one run-through
         sleep interval * 60
       end
     end

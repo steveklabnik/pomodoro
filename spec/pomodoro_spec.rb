@@ -56,7 +56,7 @@ describe Pomodoro do
 
   describe "#work" do
 
-    it "doesn't call #stop for the first 24 minutes" do
+    it "doesn't call #stop! for the first 24 minutes" do
       Pomodoro.start!
       Pomodoro.should_not_receive(:stop!)
       Timecop.travel(Chronic.parse('24 minutes from now'))
@@ -68,6 +68,22 @@ describe Pomodoro do
       Pomodoro.start!
       Pomodoro.should_receive(:stop!)
       Timecop.travel(Chronic.parse('26 minutes from now'))
+      Pomodoro.work(0)
+      Timecop.return
+    end
+
+    it "doesn't call #start! for the first 29 minutes" do
+      Pomodoro.start!
+      Pomodoro.should_not_receive(:start!)
+      Timecop.travel(Chronic.parse('29 minutes from now'))
+      Pomodoro.work(0)
+      Timecop.return
+    end
+
+    it "calls #start! after 30 minutes" do
+      Pomodoro.start!
+      Pomodoro.should_receive(:start!)
+      Timecop.travel(Chronic.parse('31 minutes from now'))
       Pomodoro.work(0)
       Timecop.return
     end
