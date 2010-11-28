@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require './lib/pomodoro'
+require 'pomodoro'
 require 'thin'
 
-rackup_file = "./lib/pomodoro/config.ru"
+rackup_file = "#{File.dirname(__FILE__)}/../lib/pomodoro/config.ru"
 
 Thread.new do
   loop do
