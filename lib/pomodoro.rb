@@ -1,6 +1,7 @@
 module Pomodoro
   class << self
     def start!
+      Noprocrast.activate!
     end
 
     def stop!

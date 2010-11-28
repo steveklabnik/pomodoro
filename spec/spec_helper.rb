@@ -1,5 +1,4 @@
 require 'rspec'
-
 require 'pomodoro'
 
 RSpec.configure do |c|
