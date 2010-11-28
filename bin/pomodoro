@@ -4,9 +4,16 @@ require './lib/pomodoro'
 require 'thin'
 
 rackup_file = "./lib/pomodoro/config.ru"
+
+Thread.new do
+  loop do
+    Pomodoro.work
+  end
+end
  
 argv = ARGV
 argv << ["-R", rackup_file] unless ARGV.include?("-R")
 argv << ["-p", "80"] unless ARGV.include?("-p")
 argv << ["-e", "production"] unless ARGV.include?("-e")
 Thin::Runner.new(argv.flatten).run!
+

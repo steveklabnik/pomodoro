@@ -60,7 +60,7 @@ describe Pomodoro do
       Pomodoro.start!
       Pomodoro.should_not_receive(:stop!)
       Timecop.travel(Chronic.parse('24 minutes from now'))
-      Pomodoro.work(0)
+      Pomodoro.work
       Timecop.return
     end
 
@@ -68,7 +68,7 @@ describe Pomodoro do
       Pomodoro.start!
       Pomodoro.should_receive(:stop!)
       Timecop.travel(Chronic.parse('26 minutes from now'))
-      Pomodoro.work(0)
+      Pomodoro.work
       Timecop.return
     end
 
@@ -76,22 +76,23 @@ describe Pomodoro do
       Pomodoro.start!
       Pomodoro.should_not_receive(:start!)
       Timecop.travel(Chronic.parse('29 minutes from now'))
-      Pomodoro.work(0)
+      Pomodoro.work
       Timecop.return
     end
 
     it "calls #start! after 30 minutes" do
       Pomodoro.start!
       Pomodoro.should_receive(:start!)
+      Pomodoro.instance_variable_set(:@stopped, true)
       Timecop.travel(Chronic.parse('31 minutes from now'))
-      Pomodoro.work(0)
+      Pomodoro.work
       Timecop.return
     end
 
     it "sets @start_time if it's not set" do
       Pomodoro.instance_variable_set(:@start_time, nil)
       Timecop.freeze do
-        Pomodoro.work(0)
+        Pomodoro.work
         Pomodoro.instance_variable_get(:@start_time).should == Time.now
       end
     end
