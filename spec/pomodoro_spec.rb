@@ -5,10 +5,10 @@ require 'timecop'
 
 describe Pomodoro do
 
-  before :all do
-    #rspec2 hates me, and won't stub properly
-    #Noprocrast.stub(:activate!)
-    #Noprocrast.stub(:deactivate!)
+  before :each do
+    Noprocrast = double(Noprocrast)
+    Noprocrast.stub(:activate!)
+    Noprocrast.stub(:deactivate!)
   end
 
   describe "#start!" do
@@ -19,10 +19,10 @@ describe Pomodoro do
     end
 
     it "saves its start time" do
-      Noprocrast.should_receive(:activate!)
-      Timecop.freeze
-      Pomodoro.start!
-      Pomodoro.instance_variable_get(:@start_time).should == Time.now
+      Timecop.freeze do
+        Pomodoro.start!
+        Pomodoro.instance_variable_get(:@start_time).should == Time.now
+      end
     end
 
   end
