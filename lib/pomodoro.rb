@@ -2,6 +2,7 @@ require "rubygems"
 require "bundler/setup"
 require 'sinatra'
 require 'noprocrast'
+require 'terminal-notifier'
  
 module Pomodoro
   class << self
@@ -28,11 +29,19 @@ module Pomodoro
     end
 
     def break_growl
-      system 'growlnotify -w -n Pomodoro -m "You have 5 minutes." "BREAK TIME"'
+      if (TerminalNotifier.available?) then
+        TerminalNotifier.notify('You have 5 minutes.', :title => 'Pomodoro', :subtitle => 'BREAK TIME')
+      else
+        system 'growlnotify -w -n Pomodoro -m "You have 5 minutes." "BREAK TIME"'
+      end
     end
 
     def work_growl
-      system 'growlnotify -w -n Pomodoro -m "This lasts 25 minutes." "WORK TIME"'
+      if (TerminalNotifier.available?) then
+        TerminalNotifier.notify('This lasts 25 minutes.', :title => 'Pomodoro', :subtitle => 'WORK TIME')
+      else
+        system 'growlnotify -w -n Pomodoro -m "This lasts 25 minutes." "WORK TIME"'
+      end
     end
 
   end
