@@ -20,4 +20,5 @@ Gem::Specification.new do |s|
   s.add_dependency("noprocrast")
   s.add_dependency("thin")
   s.add_dependency("sinatra")
+	s.add_dependency("terminal-notifier")
 end
